@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Core Compentencies</title>
 
@@ -33,7 +32,7 @@
         <img id="poster5" src="assets/wolfposter.jpg" />
         <img id="poster6" src="assets/beeposter.jpg" />
         <img id="poster7" src="assets/dragonflyposter.jpg" />
-        <!--  -->
+        <!-- audio -->
         <audio
           id="chirping"
           src="assets/birds-chirping-75156.mp3"
@@ -44,7 +43,7 @@
           src="assets/water-bubbles-257594.mp3"
           preload="auto"
         ></audio>
-        <!--  -->
+        <!-- models -->
         <a-asset-item id="fish" src="assets/fish.gltf"></a-asset-item>
         <a-asset-item id="beaver" src="assets/beaver.gltf"></a-asset-item>
         <a-asset-item id="bird" src="assets/bird.gltf"></a-asset-item>
@@ -52,7 +51,7 @@
         <a-asset-item id="wolf" src="assets/wolf.gltf"></a-asset-item>
         <a-asset-item id="bee" src="assets/bee.gltf"></a-asset-item>
         <a-asset-item id="dfly" src="assets/dfly.gltf"></a-asset-item>
-        <!--  -->
+        <!-- enviro -->
         <a-asset-item id="ground" src="assets/enviro.gltf"></a-asset-item>
         <a-asset-item id="gmesh" src="assets/enviromesh.gltf"></a-asset-item>
       </a-assets>
@@ -107,7 +106,7 @@
         gltf-model="#bird"
         position="5 2.7 0"
         shadow="cast: true;"
-        sound="src:#chirping; autoplay:true;"
+        sound="src:#chirping; autoplay:true; on:mouseenter"
         event-set__mouseenter="_target:#ring; color:#FB0BFF; scale:1.5 1.5 1.5"
         event-set__mouseleave="_target:#ring; color:#0BFBFF; scale:1 1 1"
         trigger-poster3-click
@@ -208,6 +207,7 @@
       >
       </a-box>
       <!-- environment castShadow:true;-->
+      <a-entity environment="preset: yavapai"></a-entity>
       <a-entity
         light="type: point; color:#E6E6E6; intensity:2; "
         position="0 12 7"
@@ -222,6 +222,7 @@
       ></a-entity>
       <a-entity
         gltf-model="#ground"
+        position="0 .1 0"
         shadow="receive:true; cast: true;"
         rotation="0 180 0"
       ></a-entity>
