@@ -34,6 +34,17 @@
         <img id="poster6" src="assets/beeposter.jpg" />
         <img id="poster7" src="assets/dragonflyposter.jpg" />
         <!--  -->
+        <audio
+          id="chirping"
+          src="assets/birds-chirping-75156.mp3"
+          preload="auto"
+        ></audio>
+        <audio
+          id="swimming"
+          src="assets/water-bubbles-257594.mp3"
+          preload="auto"
+        ></audio>
+        <!--  -->
         <a-asset-item id="fish" src="assets/fish.gltf"></a-asset-item>
         <a-asset-item id="beaver" src="assets/beaver.gltf"></a-asset-item>
         <a-asset-item id="bird" src="assets/bird.gltf"></a-asset-item>
@@ -53,7 +64,7 @@
         position="1 0 0"
         rotation="0 -90 0"
         shadow="cast: true"
-        sound="src:#bookSound; autoplay:false"
+        sound="src:#swimming; autoplay:true;"
         event-set__mouseenter="_target:#ring; color:#FB0BFF; scale:1.5 1.5 1.5"
         event-set__mouseleave="_target:#ring; color:#0BFBFF; scale:1 1 1"
         animation="property: position; dur: 3000; from: 1 0 0; to: 0 0 2.5; dir: alternate; easing: linear; loop: true;"
@@ -76,7 +87,6 @@
         gltf-model="#beaver"
         position="4 0 0"
         shadow="cast: true;"
-        sound="src:#bookSound; autoplay:false"
         event-set__mouseenter="_target:#ring; color:#FB0BFF; scale:1.5 1.5 1.5"
         event-set__mouseleave="_target:#ring; color:#0BFBFF; scale:1 1 1"
         trigger-poster2-click
@@ -97,7 +107,7 @@
         gltf-model="#bird"
         position="5 2.7 0"
         shadow="cast: true;"
-        sound="src:#bookSound; autoplay:false"
+        sound="src:#chirping; autoplay:true;"
         event-set__mouseenter="_target:#ring; color:#FB0BFF; scale:1.5 1.5 1.5"
         event-set__mouseleave="_target:#ring; color:#0BFBFF; scale:1 1 1"
         trigger-poster3-click
@@ -119,7 +129,6 @@
         position="2 0 -3"
         scale=".8 .8 .8"
         shadow="cast: true;"
-        sound="src:#bookSound; autoplay:false"
         event-set__mouseenter="_target:#ring; color:#FB0BFF; scale:1.5 1.5 1.5"
         event-set__mouseleave="_target:#ring; color:#0BFBFF; scale:1 1 1"
         trigger-poster4-click
@@ -141,7 +150,6 @@
         position="4 .3 -2"
         scale=".8 .8 .8"
         shadow="cast: true;"
-        sound="src:#bookSound; autoplay:false"
         event-set__mouseenter="_target:#ring; color:#FB0BFF; scale:1.5 1.5 1.5"
         event-set__mouseleave="_target:#ring; color:#0BFBFF; scale:1 1 1"
         trigger-poster5-click
