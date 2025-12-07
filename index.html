@@ -1,99 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script src="//aframe.io/releases/1.1.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.6.0/dist/aframe-extras.min.js"></script>
-    <script src="https://unpkg.com/aframe-event-set-component@5.x.x/dist/aframe-event-set-component.min.js"></script>
-    <script src="https://unpkg.com/aframe-environment-component@1.0.0/dist/aframe-environment-component.min.js"></script>
-    <script src="js/customFunctions.js"></script>
-
-    <title>A-Frame</title>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Core Compentencies</title>
+
+    <script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
+    <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@5.x.x/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.0.0/dist/aframe-environment-component.min.js"></script>
+    <script src="js/customFunctions.js"></script>
   </head>
 
   <body>
     <a-scene
-      inspector="url: https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js"
+      renderer="colorManagement: true"
+      inspector="inspector-plugin-recast, url: https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js"
     >
+      <a-entity position="0 0 4ss" movement-controls="constrainToNavMesh:true;">
+        <a-entity camera position="0 1.5 0" look-controls>
+          <a-cursor id="ring" color="#0BFBFF"></a-cursor>
+        </a-entity>
+      </a-entity>
       <!--preload-->
       <a-assets>
         <img id="poster1" src="assets/fishposter.jpg" />
-
+        <img id="poster2" src="assets/beaverposter.jpg" />
+        <img id="poster3" src="assets/birdposter.jpg" />
+        <img id="poster4" src="assets/bisonposter.jpg" />
+        <img id="poster5" src="assets/wolfposter.jpg" />
+        <img id="poster6" src="assets/beeposter.jpg" />
+        <img id="poster7" src="assets/dragonflyposter.jpg" />
+        <!--  -->
         <a-asset-item id="fish" src="assets/fish.gltf"></a-asset-item>
+        <a-asset-item id="beaver" src="assets/beaver.gltf"></a-asset-item>
+        <a-asset-item id="bird" src="assets/bird.gltf"></a-asset-item>
+        <a-asset-item id="bison" src="assets/bison.gltf"></a-asset-item>
+        <a-asset-item id="wolf" src="assets/wolf.gltf"></a-asset-item>
+        <a-asset-item id="bee" src="assets/bee.gltf"></a-asset-item>
+        <a-asset-item id="dfly" src="assets/dfly.gltf"></a-asset-item>
+        <!--  -->
         <a-asset-item id="ground" src="assets/enviro.gltf"></a-asset-item>
         <a-asset-item id="gmesh" src="assets/enviromesh.gltf"></a-asset-item>
       </a-assets>
 
-      <a-entity id="rig" movement-controls="constrainToNavMesh:true" foo>
-        <a-entity id="camera" camera position="-3 1.5 -3" look-controls>
-          <a-cursor id="ring" color="#0BFBFF"></a-cursor>
-        </a-entity>
-      </a-entity>
-
-      <!-- beaver -->
+      <!-- animals -->
       <a-entity
-        gltf-model="assets/beaver.gltf"
-        position="-1 0 -2"
-        shadow="cast: true"
-      >
-      </a-entity>
-
-      <!-- fish -->
-      <a-entity
+        id="thefish"
         gltf-model="#fish"
-        position="-1 0 -1"
-        animation__rotate="property: rotation; dir: forward; dur: 1000;
-                                 easing: easeInSine; loop: false; to: 0 90 0;
-                                 startEvents:click"
+        position="1 0 0"
+        rotation="0 -90 0"
+        shadow="cast: true"
+        sound="src:#bookSound; autoplay:false"
         event-set__mouseenter="_target:#ring; color:#FB0BFF; scale:1.5 1.5 1.5"
         event-set__mouseleave="_target:#ring; color:#0BFBFF; scale:1 1 1"
-      >
-      </a-entity>
-
+        animation="property: position; dur: 3000; from: 1 0 0; to: 0 0 2.5; dir: alternate; easing: linear; loop: true;"
+        animation__2="property: rotation; dur: 6000; from: 0 0 0; to: 0 -360 0; dir: normal;    easing: linear; loop: true;"
+        trigger-poster1-click
+      ></a-entity>
       <a-box
         id="fishposter"
         geometry="primitive: box; height:1.5; width:1; depth:0.01;"
         material="shader: flat; src:#poster1"
-        position="1.2 1.6 -0.7"
-        rotation="0 130 0"
-        animation__reveal="property:position; to: 2.1 1.2 1.2; dur: 2000; startEvents:runP1Animation;"
-        animation__hide="property:position; to: 2.1 -1.2 1.2; dur: 2000; startEvents:click;"
+        position="1 -5 3"
+        rotation="-15 75 0"
+        animation__reveal="property:position; to: 1 1 3; dur: 1000; startEvents:runP1Animation;"
+        animation__hide="property:position; to: 1 -5 3; dur: 1000; startEvents:click;"
       >
       </a-box>
 
       <a-entity
-        id="theBook"
-        gltf-model="#gmesh"
-        position="2.5 1.25 0.3"
-        scale="0.1 0.1 0.1"
-        rotation="85 -7 85"
-        shadow="cast: true"
+        id="thebeaver"
+        gltf-model="#beaver"
+        position="4 0 0"
+        shadow="cast: true;"
         sound="src:#bookSound; autoplay:false"
-        trigger-poster1-click
+        event-set__mouseenter="_target:#ring; color:#FB0BFF; scale:1.5 1.5 1.5"
+        event-set__mouseleave="_target:#ring; color:#0BFBFF; scale:1 1 1"
+        trigger-poster2-click
       ></a-entity>
+      <a-box
+        id="beaverposter"
+        geometry="primitive: box; height:1.5; width:1; depth:0.01;"
+        material="shader: flat; src:#poster2"
+        position="4.5 -5 1"
+        rotation="-15 0 0"
+        animation__reveal="property:position; to: 4.5 1 1; dur: 1000; startEvents:runP2Animation;"
+        animation__hide="property:position; to: 4.5 -5 1; dur: 1000; startEvents:click;"
+      >
+      </a-box>
 
-      <!-- environment -->
       <a-entity
-        gltf-model="#ground"
-        shadow="receive:true; cast: true"
-        rotation="0 180 0"
+        id="thebird"
+        gltf-model="#bird"
+        position="5 2.7 0"
+        shadow="cast: true;"
+        sound="src:#bookSound; autoplay:false"
+        event-set__mouseenter="_target:#ring; color:#FB0BFF; scale:1.5 1.5 1.5"
+        event-set__mouseleave="_target:#ring; color:#0BFBFF; scale:1 1 1"
+        trigger-poster3-click
       ></a-entity>
+      <a-box
+        id="birdposter"
+        geometry="primitive: box; height:1.5; width:1; depth:0.01;"
+        material="shader: flat; src:#poster3"
+        position="5 -5 0"
+        rotation="-15 0 0"
+        animation__reveal="property:position; to: 5 1.2 0; dur: 1000; startEvents:runP3Animation;"
+        animation__hide="property:position; to: 5 -5 0; dur: 1000; startEvents:click;"
+      >
+      </a-box>
+
       <a-entity
-        light="type: point; color:#E6E6E6; intensity:10"
-        position="0.4 2.3 -5.817"
+        id="thebison"
+        gltf-model="#bison"
+        position="2 0 -3"
+        scale=".8 .8 .8"
+        shadow="cast: true;"
+        sound="src:#bookSound; autoplay:false"
+        event-set__mouseenter="_target:#ring; color:#FB0BFF; scale:1.5 1.5 1.5"
+        event-set__mouseleave="_target:#ring; color:#0BFBFF; scale:1 1 1"
+        trigger-poster4-click
+      ></a-entity>
+      <a-box
+        id="bisonposter"
+        geometry="primitive: box; height:1.5; width:1; depth:0.01;"
+        material="shader: flat; src:#poster4"
+        position="3.5 -5 -3.5"
+        rotation="-15 60 0"
+        animation__reveal="property:position; to: 3.5 1.3 -3.5; dur: 1000; startEvents:runP4Animation;"
+        animation__hide="property:position; to: 3.5 -5 -3.5; dur: 1000; startEvents:click;"
+      >
+      </a-box>
+
+      <a-entity
+        id="thewolf"
+        gltf-model="#wolf"
+        position="4 .3 -2"
+        scale=".8 .8 .8"
+        shadow="cast: true;"
+        sound="src:#bookSound; autoplay:false"
+        event-set__mouseenter="_target:#ring; color:#FB0BFF; scale:1.5 1.5 1.5"
+        event-set__mouseleave="_target:#ring; color:#0BFBFF; scale:1 1 1"
+        trigger-poster5-click
+      ></a-entity>
+      <a-box
+        id="wolfposter"
+        geometry="primitive: box; height:1.5; width:1; depth:0.01;"
+        material="shader: flat; src:#poster5"
+        position="4.5 -5 -1.5"
+        rotation="-15 -15 0"
+        animation__reveal="property:position; to: 4.5 1.2 -1.5; dur: 1000; startEvents:runP5Animation;"
+        animation__hide="property:position; to: 4.5 -5 -1.5; dur: 1000; startEvents:click;"
+      >
+      </a-box>
+
+      <a-entity
+        id="thebee"
+        gltf-model="#bee"
+        position="-2 1.5 1"
+        rotation="0 -90 0"
+        scale=".8 .8 .8"
+        shadow="cast: true;"
+        sound="src:#bookSound; autoplay:false"
+        event-set__mouseenter="_target:#ring; color:#FB0BFF; scale:1.5 1.5 1.5"
+        event-set__mouseleave="_target:#ring; color:#0BFBFF; scale:1 1 1"
+        trigger-poster6-click
+      ></a-entity>
+      <a-box
+        id="beeposter"
+        geometry="primitive: box; height:1.5; width:1; depth:0.01;"
+        material="shader: flat; src:#poster6"
+        position="-3 -5 1.2"
+        rotation="-15 -30 0"
+        animation__reveal="property:position; to: -3 1.25 1.2; dur: 1000; startEvents:runP6Animation;"
+        animation__hide="property:position; to: -3 -5 1.2; dur: 1000; startEvents:click;"
+      >
+      </a-box>
+
+      <a-entity
+        id="thedfly"
+        gltf-model="#dfly"
+        position="-1 2 0"
+        scale=".8 .8 .8"
+        shadow="cast: true;"
+        sound="src:#bookSound; autoplay:false"
+        event-set__mouseenter="_target:#ring; color:#FB0BFF; scale:1.5 1.5 1.5"
+        event-set__mouseleave="_target:#ring; color:#0BFBFF; scale:1 1 1"
+        trigger-poster7-click
+      ></a-entity>
+      <a-box
+        id="dflyposter"
+        geometry="primitive: box; height:1.5; width:1; depth:0.01;"
+        material="shader: flat; src:#poster7"
+        position="-1.8 -5 0"
+        rotation="-15 -60 0"
+        animation__reveal="property:position; to: -1.8 1.6 0; dur: 1000; startEvents:runP7Animation;"
+        animation__hide="property:position; to: -1.8 -5 0; dur: 1000; startEvents:click;"
+      >
+      </a-box>
+      <!-- environment castShadow:true;-->
+      <a-entity
+        light="type: point; color:#E6E6E6; intensity:2; "
+        position="0 12 7"
         geometry="primitive:sphere; radius:0.2;"
         material="shader:flat"
       ></a-entity>
       <a-entity
-        nav-mesh
+        light="type: ambient; color:#87CEEB; intensity:.3; "
+        position="0 12 7"
+        geometry="primitive:sphere; radius:0.2;"
+        material="shader:flat"
+      ></a-entity>
+      <a-entity
+        gltf-model="#ground"
+        shadow="receive:true; cast: true;"
+        rotation="0 180 0"
+      ></a-entity>
+      <a-entity
         gltf-model="#gmesh"
         rotation="0 180 0"
-        position="0 -0.5 0"
+        nav-mesh
         visible="false"
       ></a-entity>
       <a-sky color="#87CEEB"></a-sky>
+
+      <!-- <a-box nav-agent color="red" position="0 0.7 0"></a-box> -->
     </a-scene>
   </body>
 </html>
